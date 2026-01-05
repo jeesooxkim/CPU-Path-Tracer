@@ -14,6 +14,19 @@ Sampling strategies in path tracing involve tradeoffs between *noise, convergenc
 
 As sampling strategies become more sophisticated, however, the cost of evaluating probability distributions and weighting samples increases, introducing performance tradeoffs. These tradeoffs are particularly relevant to real-time rendering and film production where render time directly impacts interactivity, production schedules, and budgets. This project investigates such performance tradeoffs through profiling and visual comparison of rendered images produced using different sampling strategies.
 
+## How To Run
+This project uses a standard out-of-source CMake build.
+
+After cloning the project, run the following commands:
+```
+# build through cmake
+./scripts/build.sh
+
+# run executable
+./build/pathtracer
+```
+
+
 ## Project Specifications
 
 **Language**: C++
