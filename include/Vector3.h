@@ -1,20 +1,31 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
-class Vector3 {
+struct Vector3 {
     public:
-        double x;
-        double y;
-        double z;
+        float x = 0.0f, y = 0.0f, z = 0.0f;
 
-        Vector3(double xCoord, double yCoord, double zCoord) {
-            x = xCoord;
-            y = yCoord;
-            z = zCoord;
+        Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+
+        // ARITHMETIC OPERATIONS
+        Vector3 operator+(const Vector3& other) const {
+            return Vector3(x + other.x, y + other.y, z + other.z);
+        }
+        Vector3 operator-(const Vector3& other) const {
+            return Vector3(x - other.x, y - other.y, z - other.z);
+        }
+        Vector3 operator*(const Vector3& other) const {
+            return Vector3(x * other.x, y * other.y, z * other.z);
+        }
+        Vector3 operator*(const float scalar) const {
+            return Vector3(x * scalar, y * scalar, z * scalar);
         }
 
-        Vector3* add(Vector3 v1, Vector3 v2);
-        // void normalize();
+        float dot(const Vector3& other) const {
+            return x * other.x + y * other.y + z * other.z;
+        }
+        
+        void normalize();
 };
 
 #endif
