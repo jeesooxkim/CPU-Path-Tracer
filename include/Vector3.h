@@ -1,13 +1,16 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
+#include <iostream>
+#include <cmath>
+
 struct Vector3 {
     public:
         float x = 0.0f, y = 0.0f, z = 0.0f;
 
         Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 
-        // ARITHMETIC OPERATIONS
+        // OPERATOR OVERLOADS
         Vector3 operator+(const Vector3& other) const {
             return Vector3(x + other.x, y + other.y, z + other.z);
         }
@@ -20,12 +23,36 @@ struct Vector3 {
         Vector3 operator*(const float scalar) const {
             return Vector3(x * scalar, y * scalar, z * scalar);
         }
+        Vector3 operator/(const float scalar) const {
+            // TODO create custom exception classes
+            if (scalar == 0) { std::cerr << "Zero divison error.\n"; } 
+            return Vector3(x / scalar, y / scalar, z / scalar);
+        }
+        bool operator==(const Vector3& other) const {
+            if (x == other.x && y == other.y && z == other.z) {
+                return true;
+            }
+            return false;
+        }
 
         float dot(const Vector3& other) const {
             return x * other.x + y * other.y + z * other.z;
         }
+
+        float lengthSquared() const {
+            return x*x + y*y + z*z;
+        }
+
+        float length() const {
+            return sqrt(lengthSquared());
+        }
         
-        void normalize();
+        void normalize() {
+            float l = length();
+            if (l == 0) { std::cerr << "Zero divison error.\n"; } 
+
+            *this = *this/l;
+        }
 };
 
 #endif
