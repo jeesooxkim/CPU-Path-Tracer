@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <stdexcept>
 
 struct Vector3 {
     public:
@@ -25,7 +26,9 @@ struct Vector3 {
         }
         Vector3 operator/(const float scalar) const {
             // TODO create custom exception classes
-            if (scalar == 0) { std::cerr << "Zero divison error.\n"; } 
+            if (scalar == 0) {
+                throw std::logic_error("Zero divison error.");
+            } 
             return Vector3(x / scalar, y / scalar, z / scalar);
         }
         bool operator==(const Vector3& other) const {
@@ -49,7 +52,10 @@ struct Vector3 {
         
         void normalize() {
             float l = length();
-            if (l == 0) { std::cerr << "Zero divison error.\n"; } 
+            // TODO create custom exception classes
+            if (l == 0) {
+                throw std::logic_error("Zero divison error.");
+            } 
 
             *this = *this/l;
         }
