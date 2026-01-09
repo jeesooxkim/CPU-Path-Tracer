@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/Vector3.h"
+#include "../include/Ray.h"
 #include <assert.h>
 
 // #include "../build/_deps/catch2-src/src/catch2/catch_test_macros.hpp"
@@ -82,6 +83,13 @@ int main() {
     v1.normalize();
     assert(v1.length() == 1.0f);
     std::cout << "Passed test: Normalize.\n";
+
+    // TODO add normalize zero division test for zero length vectors
+
+    // TEST: Ray
+    Ray ray(Vector3(0,0,0), Vector3(1, 1, 1));
+    assert(ray.at(0.5f) == Vector3(0.5f, 0.5f, 0.5f));
+    std::cout << "Passed test: Ray at function.\n";
 
     return 0;
 }
